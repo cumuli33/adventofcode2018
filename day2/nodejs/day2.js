@@ -31,5 +31,23 @@ const calculateCheckSum = (ids) => {
     return twiceLetterCount * threeTimesLetterCount;
 }
 
+const findNearlyEqualIds = (ids) => {
+    var result = '';
+    ids.forEach((id, i) => {
+        ids.forEach((otherId,j) => {
+            const idChars = [...id];
+            const otherIdChars = [...otherId];
+
+            const diff = idChars.reduce((acc,curr, index) => acc + (curr === otherIdChars[index] ? 0 : 1),0);
+            
+            if(diff === 1) {
+                result = idChars.reduce((acc,curr, index) => acc + (curr === otherIdChars[index] ? curr : ''),'');
+            }
+        });
+    });
+    return result;
+}
+
+exports.findNearlyEqualIds = findNearlyEqualIds;
 exports.findLetterCount = findLetterCount;
 exports.calculateCheckSum = calculateCheckSum;

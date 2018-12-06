@@ -51,4 +51,27 @@ describe('Day 2: Inventory Management System', () => {
       console.log('Result of Day 2 Part 1: ' + result)
     });
   });
+  describe('Part 1', () => {
+    it('Examples', () => {
+      const ids =  [
+        'abcde',
+        'fghij',
+        'klmno',
+        'pqrst',
+        'fguij',
+        'axcye',
+        'wvxyz'
+      ];
+
+      assert.equal(day.findNearlyEqualIds(ids),'fgij');
+    });
+
+    
+    it('Puzzle Input', () => {
+      const input = fs.readFileSync('./../day2.txt', 'utf8');
+      const result = day.findNearlyEqualIds(input.split('\n'));
+      assert.notEqual(result,''); 
+      console.log('Result of Day 2 Part 1: ' + result)
+    });
+  });
 });
