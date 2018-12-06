@@ -1,0 +1,22 @@
+{
+  "name": "day1",
+  "version": "1.0.0",
+  "description": "https://adventofcode.com\r Solutions in Kubernetes NodeJS/Java",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cumuli33/adventofcode2018.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cumuli33/adventofcode2018/issues"
+  },
+  "homepage": "https://github.com/cumuli33/adventofcode2018#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
