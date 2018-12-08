@@ -17,8 +17,8 @@ describe('Day 3: No Matter How You Slice It', () => {
                         width: Number(value[4]),
                         height: Number(value[5])
                       }));
-      
-      assert.equal(day.countOverlappingClaims(claims),4);
+      let fabric = day.constructFabric(claims);
+      assert.equal(day.countOverlappingClaims(fabric),4);
     });
 
     it('Puzzle Input', () => {
@@ -35,33 +35,51 @@ describe('Day 3: No Matter How You Slice It', () => {
                                     width: Number(value[4]),
                                     height: Number(value[5])
                                   }));
-      const result = day.countOverlappingClaims(claims);
+      const fabric = day.constructFabric(claims);
+      const result = day.countOverlappingClaims(fabric);
       assert.notEqual(Number(result),NaN); 
-      console.log('Result of Day 3 Part 1: ' + result)
-    });
-  });
-  
-  xdescribe('Part 1', () => {
+      console.log('Result of Day 3 Part 1: ' + result);
+  });  
+  describe('Part 2', () => {
     it('Examples', () => {
-      const ids =  [
-        'abcde',
-        'fghij',
-        'klmno',
-        'pqrst',
-        'fguij',
-        'axcye',
-        'wvxyz'
-      ];
-
-      assert.equal(day.findNearlyEqualIds(ids),'fgij');
+      const input = "#1 @ 1,3: 4x4\n#2 @ 3,1: 4x4\n#3 @ 5,5: 2x2";
+      const regex = /#(\d*) @ (\d*),(\d*): (\d*)x(\d*)/;
+      const claims = input.split('\n')
+                      .map(value => regex.exec(value))
+                      .map(value => ({
+                        id: Number(value[1]),
+                        coordinates: { 
+                          x: Number(value[2]), 
+                          y: Number(value[3])
+                        }, 
+                        width: Number(value[4]),
+                        height: Number(value[5])
+                      }));
+      
+      let fabric = day.constructFabric(claims,(fields => {
+        console.log(fields);
+      }));
+    });
     });
 
     
     it('Puzzle Input', () => {
-      const input = fs.readFileSync('./../day2.txt', 'utf8');
-      const result = day.findNearlyEqualIds(input.split('\n'));
-      assert.notEqual(result,''); 
-      console.log('Result of Day 2 Part 1: ' + result)
+      const regex = /#(\d*) @ (\d*),(\d*): (\d*)x(\d*)/;
+      const claims = fs.readFileSync('./../day3.txt', 'utf8')
+                    .split('\n')
+                    .map(value => regex.exec(value))
+                    .map(value => ({
+                                    id: Number(value[1]),
+                                    coordinates: { 
+                                      x: Number(value[2]), 
+                                      y: Number(value[3])
+                                    }, 
+                                    width: Number(value[4]),
+                                    height: Number(value[5])
+                                  }));
+      let fabric = day.constructFabric(claims,(fields => {
+        console.log('Result of Day 3 Part 1: ' + fields);
+      }));
     });
   });
 });
