@@ -8,16 +8,33 @@ describe('Day 3: No Matter How You Slice It', () => {
       const regex = /#(\d*) @ (\d*),(\d*): (\d*)x(\d*)/;
       const claims = input.split('\n')
                       .map(value => regex.exec(value))
-                      .map(value => ({id: value[1], coordinates: { x: value[2], y: value[3]}, width: value[4], height: value[5]}));
+                      .map(value => ({
+                        id: Number(value[1]),
+                        coordinates: { 
+                          x: Number(value[2]), 
+                          y: Number(value[3])
+                        }, 
+                        width: Number(value[4]),
+                        height: Number(value[5])
+                      }));
       
       assert.equal(day.countOverlappingClaims(claims),4);
     });
 
-    xit('Puzzle Input', () => {
+    it('Puzzle Input', () => {
+      const regex = /#(\d*) @ (\d*),(\d*): (\d*)x(\d*)/;
       const claims = fs.readFileSync('./../day3.txt', 'utf8')
                     .split('\n')
                     .map(value => regex.exec(value))
-                    .map(value => ({id: value[1], coordinates: { x: value[2], y: value[3]}, width: value[4], height: value[5]}));
+                    .map(value => ({
+                                    id: Number(value[1]),
+                                    coordinates: { 
+                                      x: Number(value[2]), 
+                                      y: Number(value[3])
+                                    }, 
+                                    width: Number(value[4]),
+                                    height: Number(value[5])
+                                  }));
       const result = day.countOverlappingClaims(claims);
       assert.notEqual(Number(result),NaN); 
       console.log('Result of Day 3 Part 1: ' + result)
